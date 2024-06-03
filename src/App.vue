@@ -65,11 +65,18 @@
 </template>
 
 <script setup>
-  import { ref, reactive, computed } from 'vue'
+  import { ref, reactive, computed, onMounted } from 'vue'
 
   const title = 'My To Do App'
   const newTask = ref('')
   const tasks = reactive([])
+
+  onMounted (async() => {
+    const response = await
+    fetch("https://hkaasx7l4f.execute-api.us-east-2.amazonaws.com/todos")
+    tasks = await
+    response.json()
+  })
   // methods from object api
   const addTask = () => {
     if (newTask.value.length < 1) return
